@@ -3,10 +3,11 @@ import Topic from "../models/Topic.js";
 import Question from "../models/Question.js";
 import express from 'express';
 import path from 'path';
+const ROOT = path.resolve();
 const router = express.Router();
 
 router.get("/:subjectName/topics", (req, res) => {
-  res.sendFile(path.join(path.resolve(), '../public/topics.html'));
+  res.sendFile(path.join(ROOT, 'public/topics.html'));
 });
 
 router.get("/:subjectName/topics/data", async (req, res) => {
@@ -27,7 +28,7 @@ router.get("/:subjectName/topics/data", async (req, res) => {
 });
 
 router.get("/:subjectName/topics/:topicName/questions", (req, res) => {
-  res.sendFile(path.join(path.resolve(), '../public/questionlist.html'));
+  res.sendFile(path.join(ROOT, 'public/questionlist.html'));
 });
 
 router.get("/:subjectName/topics/:topicName/questions/data", async (req, res) => {
@@ -43,7 +44,7 @@ router.get("/:subjectName/topics/:topicName/questions/data", async (req, res) =>
 });
 
 router.get("/:subjectName/topics/:topicName/questions/:id", (req, res) => {
-  res.sendFile(path.join(path.resolve(), '../public/question-mcq.html'));
+  res.sendFile(path.join(ROOT, 'public/question-mcq.html'));
 });
 
 router.get("/:subjectName/topics/:topicName/questions/:id/data", async (req, res) => {
