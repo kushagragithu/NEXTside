@@ -194,6 +194,52 @@
   width: 100vw;
 }
 
+.modal {
+  position: fixed;
+  top: 0; right:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index: 20;
+  margin: 1.5rem;
+  gap: 1rem;
+}
+
+.modal-content {
+  background: var(--text-color-white);
+  padding: 1.5rem; 
+  border-radius: 0.5rem;
+  color: var(--bg-color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#modalText {
+  white-space: nowrap;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.close {
+  float:right; 
+  cursor:pointer;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  color: var(--text-color-white);
+  border-radius: 50%;
+  width: 2rem;
+  aspect-ratio: 1 / 1;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
 .navbar{
   height: auto;
   width: 100%;
@@ -203,6 +249,10 @@
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.navbar a{
+  text-decoration: none;
 }
 
 #logo{
@@ -500,6 +550,7 @@
   transition: all 0.25s ease;
   border-radius: 0.5rem;
   border: 1px solid var(--border-color);
+  z-index: 20;
 }
 
 .menu-btn {
@@ -734,6 +785,22 @@
   gap: 1rem;
   cursor: pointer;
   border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.mcq-state{
+  display: none;
+  position: absolute;
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-white);
+  justify-content: center;
+  font-size: 0.9rem;
+  z-index: 10;
+  top: -30%;
+  right: 10px;
+  color: inherit;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .option-no{
@@ -790,7 +857,7 @@
 }
 
 .button{
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   width: fit-content;
   border-radius: 0.5rem;
   border: none;
@@ -818,7 +885,7 @@
 .submit-btn{
   color: var(--bg-color-dark);
   background-color: var(--text-color-white);
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 2rem;
   width: fit-content;
   align-self: center;
   overflow: hidden;
@@ -854,8 +921,8 @@
   gap: 1rem;
 }
 
-.ai-explanation a{
-  padding: 0.25rem;
+.ai-explanation a {
+  padding: 0.25rem 0.5rem;
   background-color: var(--bg-color-light);
   display: flex;
   align-items: center;

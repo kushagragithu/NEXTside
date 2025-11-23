@@ -50,7 +50,7 @@ function setupNavigation(attempt = 1) {
   if (!nextBtn || !prevBtn || !questionsList.length) {
     if (attempt < 10) { 
       console.warn(`⏳ Waiting for buttons or data... (Attempt ${attempt})`);
-      setTimeout(() => setupNavigation(attempt + 1), 200);
+      setTimeout(() => setupNavigation(attempt + 1), 300);
     } else {
       console.error("❌ Navigation setup failed after multiple retries.");
     }
@@ -117,6 +117,7 @@ fetch(`/subjects/${subject}/topics/${topic}/questions/${active}/data`)
                         <div class="mcq-option">
                           <div class="option-no">${i + 1}</div>
                           <div class="option" data-option="${opt}">${opt}</div>
+                          <div class="mcq-state">Correct</div>
                         </div>
                       `).join('')}
                     </div>
@@ -161,7 +162,7 @@ fetch(`/subjects/${subject}/topics/${topic}/questions/${active}/data`)
       });
     }
 
-    const submitBtns = document.querySelectorAll('.submit, .submit-btn');
+const submitBtns = document.querySelectorAll('.submit, .submit-btn');
 const explanationDiv = document.querySelector('.explanation');
 const timerDisplay = document.querySelector('.timer');
 let selectedOption = null;
@@ -174,21 +175,25 @@ const optionContainers = document.querySelectorAll('.mcq-option');
 
 // ✅ define questionId properly in scope
 const attempted = JSON.parse(localStorage.getItem('attemptedQuestions')) || [];
-const alreadyAttempted = attempted.includes(questionId);
+let alreadyAttempted = attempted.includes(questionId);
 
 // 🟩 if already attempted, show explanation but still allow retry
 if (alreadyAttempted) {
   explanationDiv.style.display = "block";
   optionContainers.forEach(o => {
     const optVal = o.querySelector('.option')?.dataset.option?.trim();
-    if (optVal === correct.trim()) o.classList.add('correct');
+    if (optVal === correct.trim()){
+      o.classList.add('correct');
+      const state = o.querySelector('.mcq-state');
+      state.style.display = "flex";
+      state.innerText = "Correct";
+    }
     o.querySelector('.option').style.pointerEvents = 'none';
   });
 
   submitBtns.forEach(btn => {
     btn.innerText = "⟳ Retry";
-    btn.style.color = "var(--bg-color-dark)";
-    btn.style.backgroundColor = "var(--text-color-white)";
+    btn.classList.remove('active');
     btn.disabled = false;
   });
 } else {
@@ -203,7 +208,7 @@ submitBtns.forEach(btn => {
 // ✅ Option click logic
 optionContainers.forEach(container => {
   container.addEventListener('click', () => {
-    if (isSubmitted) return;
+    if (isSubmitted || alreadyAttempted) return;
     const optDiv = container.querySelector('.option');
     if (!optDiv) return;
 
@@ -248,19 +253,29 @@ function autoSubmit() {
 function handleSubmitClick(e, isAuto = false) {
   const safeTrim = (val) => (typeof val === "string" ? val.trim() : "");
 
-  // 🟩 Retry logic
+  optionContainers.forEach(o => {
+    const state = o.querySelector('.mcq-state');
+    state.style.display = 'none';
+  });
+
   if (e && e.target && e.target.innerText === "⟳ Retry") {
-    optionContainers.forEach(o => o.classList.remove('selected', 'correct', 'wrong'));
+    isSubmitted = false;
+    alreadyAttempted = false;
+    optionContainers.forEach(o => {
+      o.classList.remove('selected', 'correct', 'wrong')
+      const state = o.querySelector('.mcq-state');
+      state.style.display = "none";
+      state.innerText = "";
+      const opt = o.querySelector('.option');
+      opt.style.pointerEvents = "auto";
+    });
     explanationDiv.style.display = "none";
     submitBtns.forEach(btn => {
       btn.innerText = "Submit";
       btn.classList.remove('active');
       btn.disabled = false;
-      btn.style.color = "var(--bg-color-dark)";
-      btn.style.backgroundColor = "var(--text-color-white)";
     });
     selectedOption = null;
-    isSubmitted = false;
     timeLeft = 60;
 
     // ✅ Remove from attemptedQuestions so user can try again
@@ -276,12 +291,19 @@ function handleSubmitClick(e, isAuto = false) {
 
   stopTimer();
   isSubmitted = true;
-
-  // ✅ Mark correct/wrong
+  
   optionContainers.forEach(o => {
     const optVal = safeTrim(o.querySelector('.option')?.dataset.option);
-    if (optVal === safeTrim(correct)) o.classList.add('correct');
-    else if (o.classList.contains('selected')) o.classList.add('wrong');
+    const state = o.querySelector('.mcq-state');
+    if (optVal === safeTrim(correct)){ 
+      o.classList.add('correct') 
+      state.innerText = "Correct";
+      state.style.display = "flex";
+    } else if (o.classList.contains('selected')){ 
+      o.classList.add('wrong')
+      state.innerText = "Wrong";
+      state.style.display = "flex";
+    };
   });
 
   explanationDiv.style.display = "block";

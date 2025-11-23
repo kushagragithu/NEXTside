@@ -17,7 +17,7 @@
     "cors": "^2.8.5",
     "debug": "^4.4.3",
     "depd": "^2.0.0",
-    "dotenv": "^17.2.1",
+    "dotenv": "^17.2.3",
     "dunder-proto": "^1.0.1",
     "ee-first": "^1.1.1",
     "encodeurl": "^2.0.0",
@@ -27,6 +27,7 @@
     "escape-html": "^1.0.3",
     "etag": "^1.8.1",
     "express": "^5.1.0",
+    "express-session": "^1.18.2",
     "finalhandler": "^2.1.0",
     "forwarded": "^0.2.0",
     "fresh": "^2.0.0",
@@ -60,6 +61,8 @@
     "on-finished": "^2.4.1",
     "once": "^1.4.0",
     "parseurl": "^1.3.3",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
     "path-to-regexp": "^8.3.0",
     "proxy-addr": "^2.0.7",
     "punycode": "^2.3.1",
@@ -88,7 +91,6 @@
     "whatwg-url": "^14.2.0",
     "wrappy": "^1.0.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

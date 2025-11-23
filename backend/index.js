@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
-import subjectsRouter from './routes/subjects.js'; // ✅ import instead of require
+import subjectsRouter from './routes/subjects.js';
 
 dotenv.config();
 
@@ -18,7 +18,6 @@ app.get('/subjects', (req, res) => {
   res.sendFile(path.join(path.resolve(), '../public/index.html'));
 });
 
-// ✅ use the imported router
 app.use('/subjects', subjectsRouter);
 
 mongoose
