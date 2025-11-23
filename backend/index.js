@@ -24,6 +24,8 @@ app.get('/subjects', (req, res) => {
 
 app.use('/subjects', subjectsRouter);
 
+app.use('/', subjectsRouter);
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
