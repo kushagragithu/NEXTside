@@ -7,26 +7,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/*:root[data-theme="dark"] {
-  --bg-color-dark: #22181c;
-  --bg-color-light: #2c2025;
-  --text-color-white: #f1e9e5;
-  --text-color-offwhite: #A0A0A0;
-  --primary-color: #ff8163;
-  --border-color: #3a2f36;
-  --question-hover: #ff826317;
-}*/
-
-/*:root[data-theme="dark"] {
-  --bg-color-dark: #2f3136;        
-  --bg-color-light: #18191c;       
-  --text-color-white: #dcddde;   
-  --text-color-offwhite: #b9bbbe; 
-  --primary-color: #7289da;        
-  --border-color: #202225;         
-  --question-hover: #40444b;       
-}*/
-
 :root[data-theme="dark"] {
   --bg-color-dark: #18191c;        
   --bg-color-light: #18191c;       

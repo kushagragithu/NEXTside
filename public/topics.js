@@ -10,7 +10,6 @@ document.getElementById("pre-clinical").innerText = subject.charAt(0).toUpperCas
 
 const container = document.querySelector(".topics");
 
-// Fetch topics from backend
 fetch(`/subjects/${subject}/topics/data`)
   .then(res => res.json())
   .then(topics => {

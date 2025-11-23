@@ -154,7 +154,7 @@ fetch(`/subjects/${subject}/topics/${topic}/questions/${active}/data`)
       const encodedPrompt = encodeURIComponent(prompt);
 
       chatGPTLink.addEventListener('click', () => {
-        window.open(`https://chat.openai.com/?q=${encodedPrompt}`/*, '_blank'*/);
+        window.open(`https://chat.openai.com/?q=${encodedPrompt}`);
       });
 
       geminiLink.addEventListener('click', () => {
@@ -173,11 +173,9 @@ explanationDiv.style.display = "none";
 
 const optionContainers = document.querySelectorAll('.mcq-option');
 
-// ✅ define questionId properly in scope
 const attempted = JSON.parse(localStorage.getItem('attemptedQuestions')) || [];
 let alreadyAttempted = attempted.includes(questionId);
 
-// 🟩 if already attempted, show explanation but still allow retry
 if (alreadyAttempted) {
   explanationDiv.style.display = "block";
   optionContainers.forEach(o => {
@@ -200,12 +198,10 @@ if (alreadyAttempted) {
   if (timerDisplay) startTimer();
 }
 
-// ✅ Always attach event listeners
 submitBtns.forEach(btn => {
   btn.addEventListener('click', handleSubmitClick);
 });
 
-// ✅ Option click logic
 optionContainers.forEach(container => {
   container.addEventListener('click', () => {
     if (isSubmitted || alreadyAttempted) return;
@@ -219,8 +215,6 @@ optionContainers.forEach(container => {
     submitBtns.forEach(btn => btn.classList.add('active'));
   });
 });
-
-// Timer functions remain the same...
 
 function startTimer() {
   if (timerInterval) clearInterval(timerInterval);
@@ -278,7 +272,6 @@ function handleSubmitClick(e, isAuto = false) {
     selectedOption = null;
     timeLeft = 60;
 
-    // ✅ Remove from attemptedQuestions so user can try again
     let attempted = JSON.parse(localStorage.getItem('attemptedQuestions')) || [];
     attempted = attempted.filter(id => id !== questionId);
     localStorage.setItem('attemptedQuestions', JSON.stringify(attempted));
@@ -308,14 +301,12 @@ function handleSubmitClick(e, isAuto = false) {
 
   explanationDiv.style.display = "block";
 
-  // ✅ Save attempted question
   let attempted = JSON.parse(localStorage.getItem('attemptedQuestions')) || [];
   if (!attempted.includes(questionId)) {
     attempted.push(questionId);
     localStorage.setItem('attemptedQuestions', JSON.stringify(attempted));
   }
 
-  // ✅ Change button to retry
   submitBtns.forEach(btn => {
     btn.innerText = "⟳ Retry";
     btn.classList.add('active');

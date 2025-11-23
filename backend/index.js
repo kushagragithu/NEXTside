@@ -23,8 +23,8 @@ app.use('/subjects', subjectsRouter);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('✅ MongoDB connected');
+    console.log('DB connected');
     const PORT = process.env.PORT || 7001;
-    app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
+    app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
   })
-  .catch((err) => console.error('❌ MongoDB connection error:', err));
+  .catch((err) => console.error('DB connection error:', err));

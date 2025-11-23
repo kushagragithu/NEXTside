@@ -30,7 +30,6 @@ router.get("/:subjectName/topics/:topicName/questions", (req, res) => {
   res.sendFile(path.join(path.resolve(), '../public/questionlist.html'));
 });
 
-// GET questions of a topic
 router.get("/:subjectName/topics/:topicName/questions/data", async (req, res) => {
   const { subjectName, topicName } = req.params;
   const subject = await Subject.findOne({ name: subjectName });
@@ -42,8 +41,6 @@ router.get("/:subjectName/topics/:topicName/questions/data", async (req, res) =>
   const questions = await Question.find({ topic: topic._id });
   res.json(questions);
 });
-
-// GET a specific question
 
 router.get("/:subjectName/topics/:topicName/questions/:id", (req, res) => {
   res.sendFile(path.join(path.resolve(), '../public/question-mcq.html'));
