@@ -6,6 +6,34 @@ import path from 'path';
 const ROOT = path.resolve();
 const router = express.Router();
 
+router.get('/', (req, res) => {
+  res.sendFile(path.join(path.resolve(), 'public/index.html'));
+});
+
+router.get("/data", async (req, res) => {
+  try {
+    const subjects = await Subject.find();
+
+    const subjectData = await Promise.all(
+      subjects.map(async (s) => {
+        const topics = await Topic.find({ subject: s._id }, { _id: 1 });
+        const topicIds = topics.map(t => t._id);
+
+        const totalQuestions = await Question.countDocuments({ topic: { $in: topicIds } });
+        return {
+          name: s.name,
+          displayName: s.displayName || s.name,
+          totalQuestions
+        };
+      })
+    );
+
+    res.json(subjectData);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 router.get("/:subjectName/topics", (req, res) => {
   res.sendFile(path.join(ROOT, 'public/topics.html'));
 });

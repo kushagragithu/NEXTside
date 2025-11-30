@@ -14,15 +14,13 @@ app.use(cors());
 
 app.use(express.static(path.join(path.resolve(), 'public')));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(path.resolve(), 'public/index.html'));
-});
-
-app.get('/subjects', (req, res) => {
-  res.sendFile(path.join(path.resolve(), 'public/index.html'));
-});
+app.get('/', (req, res) => { res.sendFile(path.join(path.resolve(), 'public/index.html')); });
 
 app.use('/subjects', subjectsRouter);
+
+/*app.use(express.static(path.join(path.resolve(), '../public')));
+
+app.use('/subjects', subjectsRouter);*/
 
 mongoose
   .connect(process.env.MONGO_URI)

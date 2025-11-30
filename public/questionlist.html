@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="\index.css">
+    <link rel="stylesheet" href="\questionlist.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">  <link rel="stylesheet" href="/index.css">
     <title>NextSIDE</title>
@@ -16,6 +17,12 @@
             <button class="menu-btn" id="menu-btn">&#9776;</button>
             <a href="/subjects"><span id="logo">EduNEXT</span></a>
             <div class="right-nav">
+                <a href="/leaderboard">
+                    <div class="leaderBoard">
+                        <i class="fa-solid fa-trophy"></i>
+                        <div class="userName">Kushagra</div>
+                    </div>
+                </a>
                 <button id="theme-toggle" class="theme-btn">
                     <i class="fa-solid fa-moon"></i>
                 </button>
@@ -25,9 +32,10 @@
         <div style="flex-direction: row;" class="main">
             <div class="sidebar">
                 <h2 class="subject-header"></h2>
-                <div class="subject-topics"></div>
+                <div class="subject-topics"><div style="margin-top: 3rem;" class="loader"></div></div>
             </div>
             <div class="questions">
+                <div class="loader-Qlist loader"></div>
                 <div class="start-btn">Start</div>
             </div>
         </div>

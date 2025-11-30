@@ -173,7 +173,8 @@ explanationDiv.style.display = "none";
 
 const optionContainers = document.querySelectorAll('.mcq-option');
 
-const attempted = JSON.parse(localStorage.getItem('attemptedQuestions')) || [];
+const storageKey = "attempted_" + subject;
+let attempted = JSON.parse(localStorage.getItem(storageKey)) || [];
 let alreadyAttempted = attempted.includes(questionId);
 
 if (alreadyAttempted) {
@@ -272,9 +273,8 @@ function handleSubmitClick(e, isAuto = false) {
     selectedOption = null;
     timeLeft = 60;
 
-    let attempted = JSON.parse(localStorage.getItem('attemptedQuestions')) || [];
     attempted = attempted.filter(id => id !== questionId);
-    localStorage.setItem('attemptedQuestions', JSON.stringify(attempted));
+    localStorage.setItem(storageKey, JSON.stringify(attempted));
 
     startTimer();
     return;
@@ -301,10 +301,9 @@ function handleSubmitClick(e, isAuto = false) {
 
   explanationDiv.style.display = "block";
 
-  let attempted = JSON.parse(localStorage.getItem('attemptedQuestions')) || [];
   if (!attempted.includes(questionId)) {
-    attempted.push(questionId);
-    localStorage.setItem('attemptedQuestions', JSON.stringify(attempted));
+  attempted.push(questionId);
+  localStorage.setItem(storageKey, JSON.stringify(attempted));
   }
 
   submitBtns.forEach(btn => {

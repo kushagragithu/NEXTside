@@ -1,0 +1,13 @@
+@media (max-width: 480px) {
+    .leaderBoard{
+        padding: 0.15rem !important;
+    }
+
+    .leaderBoard i{
+        background: none !important;
+    }
+
+    .userName{
+        display: none !important;
+    }
+}

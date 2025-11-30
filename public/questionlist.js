@@ -28,6 +28,9 @@ fetch(`/subjects/${subject}/topics/data`)
       return;
     }
 
+    const loader = document.querySelector(".loader");
+    loader.style.display = "none";
+
     topics.forEach(topic => {
 
       const topicName = topic.name;
@@ -47,6 +50,7 @@ fetch(`/subjects/${subject}/topics/data`)
 /* Question list */
 
 const questionList = document.querySelector(".questions")
+const loaderQlist = document.querySelector(".loader-Qlist");
 
 fetch(`/subjects/${subject}/topics/${pathParts[4]}/questions/data`)
   .then(res => res.json())
@@ -55,14 +59,20 @@ fetch(`/subjects/${subject}/topics/${pathParts[4]}/questions/data`)
       questionList.innerHTML = `<div class="error-img">
                                   <img src="/assets/error-404.png">
                                   <p>No Questions found for ${decodeURIComponent(pathParts[4])}</p>
-                                </div>`;
+                                </div>`
       return;
     }
 
+    loaderQlist.style.display = "none";
+
+    const storageKey = "attempted_" + subject;
+    const attemptedQuestions = JSON.parse(localStorage.getItem(storageKey)) || [];
+
     questions.forEach((question, i) => {
+      const isAttempted = attemptedQuestions.includes(question._id);
         questionList.innerHTML += `
           <a href="/subjects/${subject}/topics/${pathParts[4]}/questions/${question._id}">
-            <div class="question">
+            <div class="question ${isAttempted ? 'attempted' : ''}">
                 <div class="index">${i + 1}</div>
                 <div class="question-line">${question.question}</div>
             </div>

@@ -6,7 +6,7 @@ previousWindow.addEventListener('click', () => {
     window.location.href = `/subjects`;
 });
 
-document.getElementById("pre-clinical").innerText = subject.charAt(0).toUpperCase() + subject.slice(1);
+document.getElementById("pre-clinical").innerText = decodeURI(subject.charAt(0).toUpperCase() + subject.slice(1));
 
 const container = document.querySelector(".topics");
 
@@ -46,7 +46,7 @@ fetch(`/subjects/${subject}/topics/data`)
   })
   .catch(err => {
     console.error("Error fetching topics:", err);
-    container.innerHTML = `<p class="text-center text-red-500">Failed to load topics.</p>
+    container.innerHTML = `<p style="color: var(--primary-color);" class="text-center text-red-500">Internal server error.</p>
                            <img class="error-img" src="/assets/server.png">`;
   });
 
