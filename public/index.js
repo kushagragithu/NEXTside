@@ -14,8 +14,6 @@ async function fetchProfile() {
       document.querySelector('.login').style.display = 'none';
       document.querySelector('.profile').style.display = 'inline-block';
       document.querySelector('.avatar').src = data.photo;
-      document.querySelector('.username').textContent = data.displayName;
-
       window.currentUser = data;
     }
   } catch (err) {

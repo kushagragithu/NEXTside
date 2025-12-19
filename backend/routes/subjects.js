@@ -7,7 +7,7 @@ const ROOT = path.resolve();
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.sendFile(path.join(path.resolve(), '../public/index.html'));
+  res.sendFile(path.join(path.resolve(), 'public/index.html'));
 });
 
 router.get("/data", async (req, res) => {
@@ -35,7 +35,7 @@ router.get("/data", async (req, res) => {
 });
 
 router.get("/:subjectName/topics", (req, res) => {
-  res.sendFile(path.join(ROOT, '../public/topics.html'));
+  res.sendFile(path.join(ROOT, 'public/topics.html'));
 });
 
 router.get("/:subjectName/topics/data", async (req, res) => {
@@ -56,7 +56,7 @@ router.get("/:subjectName/topics/data", async (req, res) => {
 });
 
 router.get("/:subjectName/topics/:topicName/questions", (req, res) => {
-  res.sendFile(path.join(ROOT, '../public/questionlist.html'));
+  res.sendFile(path.join(ROOT, 'public/questionlist.html'));
 });
 
 router.get("/:subjectName/topics/:topicName/questions/data", async (req, res) => {
@@ -72,7 +72,7 @@ router.get("/:subjectName/topics/:topicName/questions/data", async (req, res) =>
 });
 
 router.get("/:subjectName/topics/:topicName/questions/:id", (req, res) => {
-  res.sendFile(path.join(ROOT, '../public/question-mcq.html'));
+  res.sendFile(path.join(ROOT, 'public/question-mcq.html'));
 });
 
 router.get("/:subjectName/topics/:topicName/questions/:id/data", async (req, res) => {
