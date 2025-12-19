@@ -5,6 +5,26 @@ function openSubject(subject) {
 const container = document.querySelector(".subjects");
 container.innerHTML = "";
 
+async function fetchProfile() {
+  try {
+    const res = await fetch('/user/profile');
+    if (res.ok) {
+      const data = await res.json();
+
+      document.querySelector('.login').style.display = 'none';
+      document.querySelector('.profile').style.display = 'inline-block';
+      document.querySelector('.avatar').src = data.photo;
+      document.querySelector('.username').textContent = data.displayName;
+
+      window.currentUser = data;
+    }
+  } catch (err) {
+      console.log("Not logged in");
+  }
+}
+
+fetchProfile();
+
 async function loadSubjects() {
   const res = await fetch("/subjects/data");
   let subjects = await res.json();

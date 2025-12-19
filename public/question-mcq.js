@@ -127,11 +127,10 @@ fetch(`/subjects/${subject}/topics/${topic}/questions/${active}/data`)
                     <div class="explanation">
                       <div style="color: var(--primary-color); margin-bottom: 0.5rem; height: fit-content; margin-left: 0 !important;" id="subject-header">Explanation</div>
                       <p class="explanation-line">${explanation}</p>
-                    </div>
-
-                    <div class="ai-explanation">
-                      <a><img src="/assets/chatgpt-ai.png">ChatGPT</a>
-                      <a><img src="/assets/gemini-ai.png">Gemini</a>
+                      <div class="ai-explanation">
+                        <a><img src="/assets/chatgpt-ai.png">ChatGPT</a>
+                        <a><img src="/assets/gemini-ai.png">Gemini</a>
+                      </div>
                     </div>
 
                     <div class="mcq-nav">

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow" />
+  <link rel="icon" href="./assets/favicon.jpg">
   <meta name="google-site-verification" content="TSD9OAFQWsWB_mPJDvshJ6_lkKrmlCJd6TMKrGrn8O0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,20 +16,30 @@
 <body>
   <div class="container">
     <div class="navbar">
-      <a href="/subjects"><span id="logo">EduNEXT</span></a>
+      <a href="/subjects"><img class="logo" src="./assets/favicon.jpg"><span id="logo">EduNEXT</span></a>
       <div style=" position: relative; " class="right-nav">
-        <a href="/leaderboard"><div class="leaderBoard">
-          <i class="fa-solid fa-trophy"></i>
-          <div class="userName">Kushagra</div>
+        <a href="/profile"><div class="profile">
+          <img class="avatar" src="" alt="avatar">
+          <div class="userName">Student</div>
         </div></a>
         <button id="theme-toggle" class="theme-btn">
           <i class="fa-solid fa-moon"></i>
         </button>
+        <div onclick="location.href='/auth/google'" class="login">
+          <i class="fa-brands fa-google"></i>
+          <span>LOGIN</span>
+        </div>
       </div>
     </div>
-    <div style="padding-left: 3rem; padding-right: 3rem;" class="main">
-      <span id="pre-clinical">NEET PG | FMGE - Subjects</span>
-      <div style="color: var(--primary-color)" class="subjects">Loading Subjects...</div>
+    <div style="flex-direction: row;" class="main">
+      <div style="border-radius: 1rem; padding-right: 0.5rem; padding-left: 0.5rem;" class="sidebar-homes">
+        <a href="/subjects"><div class="sidebar-home active-home"><i class="fa-solid fa-house"></i>Home</div></a>
+        <a href="/dashboard"><div class="sidebar-home"><i class="fa-solid fa-square-poll-vertical"></i>Dashboard</div></a>
+        <a href="/leaderboard"><div class="sidebar-home"><i class="fa-solid fa-trophy"></i>Leaderboard</div></a>
+      </div>
+      <div style="color: var(--primary-color);" class="subjects">
+        <span id="pre-clinical">Loading Subjects...</span>
+      </div>
     </div>
   </div>
   <script src="index.js"></script>

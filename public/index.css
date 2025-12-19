@@ -8,7 +8,7 @@
 }
 
 :root[data-theme="dark"] {
-  --bg-color-dark: #18191c;        
+  --bg-color-dark: #18191c/*#3c3c3c*/;        
   --bg-color-light: black;       
   --text-color-white: #dcddde;   
   --text-color-offwhite: #b9bbbe; 
@@ -18,8 +18,8 @@
 }
 
 :root[data-theme="light"] {
-  --bg-color-dark: #ffffff;
-  --bg-color-light: #F8F8F8;
+  --bg-color-dark:#ffffff;
+  --bg-color-light:#F8F8F8;
   --text-color-white: #0f172b;
   --text-color-offwhite: #62748e;
   --primary-color: #525252;
@@ -88,10 +88,23 @@
     padding-bottom: 1rem !important;
   }
 
+  .sidebar-homes{
+    border-radius: 0 !important;
+    border: none !important;
+    width: 17% !important;
+  }
+
+  .sidebar-home{
+    font-size: 0 !important;
+    aspect-ratio: 1/1;
+    justify-content: center;
+  }
+
   .subjects{
+    width: 83% !important;
     grid-template-columns: 1fr !important;
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
+    padding: 0.5rem !important;
+    gap: 0.5rem !important;
   }
 
   .topics{
@@ -101,7 +114,10 @@
   }
 
   .subject{
-    border: 2px solid var(--border-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    /*margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;*/
   }
 
   .topic{
@@ -202,12 +218,20 @@
 
 .navbar a{
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 #logo{
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--text-color-white);
+}
+
+.logo{
+  width: 1.75rem;
+  margin-right: 0.5rem;
+  border-radius: 1rem;
 }
 
 .right-nav{
@@ -235,9 +259,10 @@
   justify-content: center;
   align-items: center;
   border: 1px solid var(--border-color);
-  color: var(--text-color-white);
-  border-radius: 50%;
   width: 2rem;
+  border: none;
+  border-radius: 50%;
+  color: var(--text-color-white);
   aspect-ratio: 1 / 1;
   font-size: 1rem;
   cursor: pointer;
@@ -248,24 +273,24 @@
   background: var(--question-hover);
 }
 
-.leaderBoard{
+.profile{
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border-color);
   border-radius: 3rem;
   gap: 0.5rem;
-  padding: 0.15rem 0.2rem;
+  padding: 0.15rem 0.25rem;
 }
 
-.leaderBoard:hover{
+.profile:hover{
   background-color: var(--border-color);
 }
 
-.leaderBoard i{
+.profile img{
   color: var(--primary-color);
-  padding: 0.35rem;
-  border-radius: 1rem;
+  border-radius: 50%;
+  width: 1.75rem;
   background-color: var(--border-color);
 }
 
@@ -362,18 +387,63 @@
   color: var(--text-color-white);
 }
 
+.sidebar-homes{
+  height: 100%;
+  width: 20%;
+  background-color: var(--bg-color-dark);
+  overflow-y: auto;
+  transition: all 0.25s ease;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  z-index: 20;
+}
+
+.sidebar-home{
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  color: var(--text-color-offwhite);
+  gap: 1em;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem
+}
+
+.sidebar-home i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  max-width: 1.1rem;
+}
+
+.sidebar-homes a{
+  text-decoration: none;
+}
+
+.sidebar-home:hover{
+  background-color: var(--border-color);
+}
+
+.active-home{
+  color: var(--primary-color);
+  background-color: #7289da17;
+}
+
 .subjects{
-  width: 100%;
+  width: 80%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  overflow-y: auto;
 }
 
 .subject{
-  border: 2px solid var(--border-color);
+  border: 1px solid var(--border-color);
   background-color: var(--bg-color-dark);
   color: var(--text-color-white);
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 1rem;
   position: relative;
 }
@@ -381,12 +451,12 @@
 .counter{
   display: flex;
   position: absolute;
-  background-color: var(--bg-color-dark);
-  border: 1px solid var(--border-color);
+  color: #7289da;
+  border: 1px solid #7289da;
   justify-content: center;
   font-size: 0.9rem;
   z-index: 10;
-  top: -9%;
+  top: 1rem;
   right: 1rem;
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
@@ -412,23 +482,31 @@
 .btn {
   display: block;
   padding: 0.6rem;
-  border-radius: 12px;
+  border-radius: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
   border: none;
-  transition: 0.3s ease;
   background-color: none;
 }
 
 .btn-green {
-  color: #2ECC71;
-  background-color: #2ecc7017;
+  color: /*#2ECC71*/var(--text-color-offwhite);
+  background-color: #7289da17;
   /*border: 1px solid #2ECC71;*/
 }
 
 .btn-red {
-  color: #7289da;
-  background-color: #7289da17;
+  color: var(--text-color-offwhite);
+  background-color: #2ecc7017;
+}
+
+.footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  height: 30%;
+  background-color: var(--border-color);
 }
 
 /*topics*/
@@ -800,6 +878,35 @@
   border-radius: 0.25rem;
 }
 
+.ai-explanation{
+  display: flex;
+  align-items: center;
+  color: var(--text-color-white);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.ai-explanation a {
+  padding: 0.25rem 0.5rem;
+  background-color: var(--bg-color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.ai-explanation a img{
+  height: 1rem;
+}
+
+.ai-explanation a:hover{
+  background-color: var(--bg-color-dark);
+}
+
 .mcq-nav{
   width: 100%;
   display: flex;
@@ -808,8 +915,6 @@
   justify-content: space-between;
   border-radius: 0.5rem;
   position: relative;
-  margin-top: auto;
-  margin-bottom: 3rem;
 }
 
 .button{
@@ -868,32 +973,4 @@
 .active{
   background-color: #7289da;
   color: #dcddde;
-}
-
-.ai-explanation{
-  display: flex;
-  align-items: center;
-  color: var(--text-color-white);
-  gap: 1rem;
-}
-
-.ai-explanation a {
-  padding: 0.25rem 0.5rem;
-  background-color: var(--bg-color-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: all 0.1s ease;
-}
-
-.ai-explanation a img{
-  height: 1rem;
-}
-
-.ai-explanation a:hover{
-  background-color: var(--bg-color-dark);
 }
