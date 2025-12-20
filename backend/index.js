@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: true,
+  origin: 'https://nextside.onrender.com',
   credentials: true
 }));
 
@@ -33,8 +33,9 @@ app.use(
       mongoUrl: process.env.MONGO_URI
     }),
     cookie: {
-      secure: process.env.NODE_ENV === 'production',
-      httpOnly: true
+      secure: true,
+      httpOnly: true,
+      sameSite: 'none'
     }
   })
 );
