@@ -7,7 +7,19 @@ container.innerHTML = "";
 
 async function fetchProfile() {
   try {
-    const res = await fetch('/user/profile');
+    const res = await fetch('/user/profile', {
+      credentials: 'include'
+    });
+
+    if (!res.ok) {
+      throw new Error('Not authenticated');
+    }
+
+    const contentType = res.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error('Expected JSON, got HTML');
+    }
+
     if (res.ok) {
       const data = await res.json();
 
