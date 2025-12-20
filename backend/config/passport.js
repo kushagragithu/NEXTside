@@ -24,7 +24,7 @@ const passportConfig = (passport) => {
 
           return done(null, user);
         } catch (err) {
-          return done(err, null); // ✅ fixed "null ull" bug
+          return done(err, null);
         }
       }
     )

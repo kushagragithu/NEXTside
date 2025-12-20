@@ -43,9 +43,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 passportConfig(passport);
 
-app.use(express.static(path.join(path.resolve(), 'public')));
+app.use(express.static(path.join(path.resolve(), '../public')));
 
-app.get('/', (req, res) => { res.sendFile(path.join(path.resolve(), 'public/index.html')); });
+app.get('/', (req, res) => { res.sendFile(path.join(path.resolve(), './public/index.html')); });
 
 app.get('/authtest', (req, res) => res.send('Auth route works'));
 

@@ -12,12 +12,13 @@ async function fetchProfile() {
       const data = await res.json();
 
       document.querySelector('.login').style.display = 'none';
-      document.querySelector('.profile').style.display = 'inline-block';
+      document.querySelector('.profile').style.display = 'flex';
       document.querySelector('.avatar').src = data.photo;
       window.currentUser = data;
     }
   } catch (err) {
       console.log("Not logged in");
+      console.log(err);
   }
 }
 
