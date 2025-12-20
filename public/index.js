@@ -7,7 +7,7 @@ container.innerHTML = "";
 
 async function fetchProfile() {
   try {
-    const res = await fetch('/user/profile', {
+    const res = await fetch('https://nextside.onrender.com/user/profile', {
       credentials: 'include'
     });
 
