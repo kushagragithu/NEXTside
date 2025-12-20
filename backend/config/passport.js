@@ -1,18 +1,13 @@
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import User from '../models/User.js';
 
-const callbackURL =
-  process.env.NODE_ENV === 'production'
-    ? 'https://nextside.onrender.com/auth/google/callback'
-    : 'http://localhost:7001/auth/google/callback';
-
 const passportConfig = (passport) => {
   passport.use(
     new GoogleStrategy(
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL
+        callbackURL: 'https://nextside.onrender.com/auth/google/callback'
       },
       async (accessToken, refreshToken, profile, done) => {
         try {

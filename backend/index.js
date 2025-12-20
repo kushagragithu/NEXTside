@@ -22,8 +22,6 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.static(path.join(path.resolve(), 'public')));
-
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -35,7 +33,7 @@ app.use(
     cookie: {
       secure: true,
       httpOnly: true,
-      sameSite: 'none'
+      /*sameSite: 'none'*/
     }
   })
 );
