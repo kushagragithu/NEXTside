@@ -11,9 +11,9 @@ async function fetchProfile() {
       credentials: 'include'
     });
 
-    if (!res.ok) {
+    /*if (!res.ok) {
       throw new Error('Not authenticated');
-    }
+    }*/
 
     const contentType = res.headers.get('content-type');
     if (!contentType || !contentType.includes('application/json')) {
