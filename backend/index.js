@@ -9,6 +9,8 @@ import MongoStore from 'connect-mongo';
 import subjectsRouter from './routes/subjects.js';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
+import mockRoutes from "./routes/mock.js";
+import adminRoutes from "./routes/admin.js";
 import passportConfig from './config/passport.js';
 
 dotenv.config();
@@ -44,15 +46,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 passportConfig(passport);
 
-app.use(express.static(path.join(path.resolve(), 'public')));
+app.use(express.static(path.join(path.resolve(), '../public')));
 
-app.get('/', (req, res) => { res.sendFile(path.join(path.resolve(), 'public/index.html')); });
+app.get('/', (req, res) => { res.sendFile(path.join(path.resolve(), '../public/index.html')); });
 
 app.get('/authtest', (req, res) => res.send('Auth route works'));
 
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/subjects', subjectsRouter);
+app.use("/mock", mockRoutes);
+app.use("/admin", adminRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)

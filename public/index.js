@@ -37,6 +37,7 @@ async function fetchProfile() {
 fetchProfile();
 
 async function loadSubjects() {
+
   const res = await fetch("/subjects/data");
   let subjects = await res.json();
 
@@ -52,15 +53,15 @@ async function loadSubjects() {
     let counterText = "";
 
     if (subject.totalQuestions === 0) {
-      /* counterText = "• Coming Soon"; */
-      counterText = "• Unattempted"
+      counterText = "• Coming Soon";
+      /*counterText = "• Unattempted"*/
     } else if (attempted === 0) {
       counterText = "• Unattempted";
     } else {
       counterText = `${attempted} / ${subject.totalQuestions}`;
     }
     let card = `<div class="subject">
-          <div style="color: var(--text-color-offwhite);" class="counter" >${counterText}</div>
+          <div class="counter" >${counterText}</div>
           <div style="display: flex; align-items: center;">
             <h1 id="subject-name">${lookGood(subject.displayName)}</h1>
           </div>
