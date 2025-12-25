@@ -1,11 +1,10 @@
 import express from "express";
 import { createSubjectMock } from "../controllers/adminController.js";
-import authMiddleware from "../middleware/auth.js";
 import adminMiddleware from "../middleware/admin.js";
+import { ensureAuth } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-// Create subject-wise mock
-router.post("/mock/subject", authMiddleware, adminMiddleware, createSubjectMock);
+router.post("/mock/subject", ensureAuth, adminMiddleware, createSubjectMock);
 
 export default router;

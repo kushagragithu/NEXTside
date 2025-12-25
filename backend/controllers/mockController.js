@@ -1,3 +1,5 @@
+import MockTest from '../models/MockTest.js';
+
 export const getSubjectMocks = async (req, res) => {
   const { subject } = req.params;
 

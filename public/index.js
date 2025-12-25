@@ -2,6 +2,10 @@ function openSubject(subject) {
   window.location.href = `/subjects/${subject}/topics`;
 }
 
+function openTest(subject) {
+  window.location.href = `/mock/subject/${subject}`;
+}
+
 const container = document.querySelector(".subjects");
 container.innerHTML = "";
 
@@ -68,7 +72,7 @@ async function loadSubjects() {
           <p id="subject-pyq">Previous Years Questions and Solutions</p>
           <div class="btn-container">
             <button onclick="openSubject('${subject.name}')" class="btn btn-green">Topic Wise</button>
-            <button class="btn btn-red">Random</button>
+            <button onclick="openTest('${subject.name}')" class="btn btn-red">Mock Tests</button>
           </div>
         </div>`;
     container.innerHTML += card;

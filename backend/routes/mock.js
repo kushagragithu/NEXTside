@@ -5,14 +5,14 @@ import {
   submitMock
 } from "../controllers/mockController.js";
 
-import authMiddleware from "../middleware/auth.js";
+import { ensureAuth } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.get("/subject/:subject", authMiddleware, getSubjectMocks);
+router.get("/subject/:subject", ensureAuth, getSubjectMocks);
 
-router.get("/start/:mockId", authMiddleware, startMock);
+router.get("/start/:mockId", ensureAuth, startMock);
 
-router.post("/submit/:mockId", authMiddleware, submitMock);
+router.post("/submit/:mockId", ensureAuth, submitMock);
 
 export default router;
