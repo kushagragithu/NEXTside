@@ -2,7 +2,16 @@ function openSubject(subject) {
   window.location.href = `/subjects/${subject}/topics`;
 }
 
-function openTest(subject) {
+async function openTest(subject) {
+  const res = await fetch(`/mock/subject/${subject}`, {
+    headers: { "Accept": "application/json" }
+  });
+
+  if (res.status === 401) {
+    openModal();
+    return;
+  }
+
   window.location.href = `/mock/subject/${subject}`;
 }
 
@@ -13,7 +22,7 @@ container.innerHTML = skeletonHTML.repeat(8);
 
 async function fetchProfile() {
   try {
-    const res = await fetch('https://nextside.onrender.com/user/profile', {
+    const res = await fetch('https://nextside.onrender.com/user/profile/data', {
       credentials: 'include'
     });
 
@@ -95,3 +104,21 @@ function lookGood(str) {
   if (!str) return "";
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+/* modal script */
+
+function openModal() {
+  document.getElementById("authModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("authModal").style.display = "none";
+}
+
+function login() {
+  window.location.href = "/auth/google";
+}
+
+document.getElementById("authModal").addEventListener("click", e => {
+  if (e.target.id === "authModal") closeModal();
+});

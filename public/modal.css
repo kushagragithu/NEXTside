@@ -1,0 +1,130 @@
+:root[data-theme="dark"] {
+  --bg-color-dark: /*#18191c*/#121212;        
+  --bg-color-light: /*#202225*/#232323;       
+  --text-color-white: #dcddde;   
+  --text-color-offwhite: #b9bbbe; 
+  --primary-color: #7289da;        
+  /*--border-color: #202225;*/
+  --border-color: /*#2f3236*/#2F2F2F;       
+  --question-hover: #40444b;
+}
+
+:root[data-theme="light"] {
+  --bg-color-dark:#ffffff;
+  --bg-color-light:#f9fafb;
+  --text-color-white: #1f2937;
+  --text-color-offwhite: #6b7280;
+  --primary-color: #2563eb;
+  --border-color: #e5e7eb;
+  --question-hover: #f5f5f5;
+}
+
+.wp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.wp-auth-card {
+  position: relative;
+  background: var(--bg-color-light);
+  color: /*#1f2937*/ var(--text-color-white);
+  width: 90%;
+  max-width: 420px;
+  padding: 2.2rem 2rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  animation: wp-scale 0.25s ease;
+}
+
+@keyframes wp-scale {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Close button */
+.wp-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+/* Logo */
+.wp-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.8rem;
+}
+
+.wp-logo-icon {
+  width: 1.6rem;
+}
+
+.wp-logo-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* Google button */
+.wp-google-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 1.4rem;
+}
+
+.wp-google-btn img {
+  width: 18px;
+}
+
+/* Legal text */
+.wp-legal {
+  font-size: 0.75rem;
+  color: /*#6b7280*/ var(--text-color-offwhite);
+  line-height: 1.4;
+  margin-bottom: 1.2rem;
+}
+
+.wp-legal a {
+  color: /*#6b7280*/ var(--text-color-offwhite);
+  text-decoration: underline;
+}
+
+/* Migrate */
+.wp-migrate {
+  font-size: 0.75rem;
+  color: /*#6b7280*/ var(--text-color-offwhite);
+}
+
+.wp-migrate a {
+  color: #7289da;
+  text-decoration: none;
+}

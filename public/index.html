@@ -9,9 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/modal.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">  <link rel="stylesheet" href="/index.css">
-  <title></title>
+  <title>Medwise</title>
 </head>
 <body>
   <div class="container">
@@ -26,8 +27,11 @@
         <button id="theme-toggle" class="theme-btn">
           <i class="fa-solid fa-moon"></i>
         </button>
-        <div onclick="location.href='/auth/google'" class="login">
-          <i class="fa-brands fa-google"></i>
+        <div onclick="login()" class="login">
+          <img
+            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+            alt="Google"
+          />
           <span>LOGIN</span>
         </div>
       </div>
@@ -44,6 +48,38 @@
       </div>
     </div>
   </div>
+
+  <div id="authModal" class="wp-overlay">
+  <div class="wp-auth-card">
+    <button class="wp-close" onclick="closeModal()">✕</button>
+
+    <div class="wp-logo">
+      <img src="assets/favicon.jpg" class="wp-logo-icon">
+      <span class="wp-logo-text">Medwise</span>
+    </div>
+
+    <button class="wp-google-btn" onclick="login()">
+      <img
+        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+        alt="Google"
+      />
+      Login with Google
+    </button>
+
+    <p class="wp-legal">
+      By continuing, you agree to our
+      <a href="#">Terms of Service</a>,
+      <a href="#">Privacy Policy</a>
+      and <a href="#">Code of Conduct</a>.
+    </p>
+
+    <p class="wp-migrate">
+      Do you have a Twitch account?
+      <a href="#">Migrate your account.</a>
+    </p>
+  </div>
+  </div>
+
   <script src="index.js"></script>
   <script src="commonLocalstorage.js"></script>
 </body>

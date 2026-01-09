@@ -377,6 +377,10 @@
   transition: all 0.3s ease;
 }
 
+.login img{
+  width: 1rem;
+}
+
 #previous-window{
   font-size: larger;
   color: var(--primary-color);
