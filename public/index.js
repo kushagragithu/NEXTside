@@ -6,8 +6,10 @@ function openTest(subject) {
   window.location.href = `/mock/subject/${subject}`;
 }
 
+const skeletonHTML = document.querySelector(".subject-skeleton").outerHTML;
 const container = document.querySelector(".subjects");
-container.innerHTML = "";
+
+container.innerHTML = skeletonHTML.repeat(8);
 
 async function fetchProfile() {
   try {
@@ -43,6 +45,7 @@ fetchProfile();
 async function loadSubjects() {
 
   const res = await fetch("/subjects/data");
+
   let subjects = await res.json();
 
   subjects = subjects.map(sub => ({
@@ -51,6 +54,8 @@ async function loadSubjects() {
     }));
 
   subjects.sort((a, b) => b.attempted - a.attempted);
+
+  container.innerHTML = "";
 
   subjects.forEach(subject => {
     const attempted = getAttemptedCount(subject.name);
@@ -64,6 +69,7 @@ async function loadSubjects() {
     } else {
       counterText = `${attempted} / ${subject.totalQuestions}`;
     }
+
     let card = `<div class="subject">
           <div class="counter" >${counterText}</div>
           <div style="display: flex; align-items: center;">
