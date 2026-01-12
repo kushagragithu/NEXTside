@@ -1,9 +1,9 @@
-import { Router } from 'express';
+import express from 'express';
+const router = express.Router();
 import { ensureAuth } from '../middleware/authMiddleware.js';
+import path from 'path';
 
-const router = Router();
-
-router.get('/profile', (req, res) => {
+router.get('/profile', ensureAuth, (req, res) => {
   res.sendFile(path.join(path.resolve(), 'public/profile.html'));
 });
 
@@ -16,9 +16,7 @@ router.get('/profile/data', ensureAuth, (req, res) => {
 });
 
 router.get('/dashboard', ensureAuth, (req, res) => {
-    res.json({
-        
-    })
+    res.json({});
 })
 
 export default router;
