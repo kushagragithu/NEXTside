@@ -16,7 +16,7 @@ previousWindow.addEventListener('click', () => {
     window.location.href = `/subjects/${subject}/topics/${topic}/questions`;
 });
 
-document.querySelector(".subject-header").innerText = decodeURI(topic).charAt(0).toUpperCase() + decodeURI(topic).slice(1);
+/*document.querySelector(".subject-header").innerText = decodeURI(topic).charAt(0).toUpperCase() + decodeURI(topic).slice(1);*/
 
 let questionsList = [];
 
@@ -88,7 +88,7 @@ function setupNavigation(attempt = 1) {
       window.location.href = `/subjects/${subject}/topics/${topic}/questions/${prevId}`;
     }
   });
-}
+} 
 
 /* mcq js */
 
@@ -226,7 +226,7 @@ function startTimer() {
     timeLeft--;
     timerDisplay.textContent = timeLeft;
 
-    if (timeLeft <= 10) timerDisplay.style.color = '#ff5555';
+    if (timeLeft <= 10) timerDisplay.style.color = 'var(--red-color)';
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       autoSubmit();

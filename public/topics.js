@@ -6,9 +6,13 @@ previousWindow.addEventListener('click', () => {
     window.location.href = `/subjects`;
 });
 
-document.getElementById("pre-clinical").innerText = decodeURI(subject.charAt(0).toUpperCase() + subject.slice(1));
+/*document.getElementById("pre-clinical").innerText = decodeURI(subject.charAt(0).toUpperCase() + subject.slice(1));*/
+
+const skeletonHTML = document.querySelector(".subject-skeleton").outerHTML;
 
 const container = document.querySelector(".topics");
+
+container.innerHTML = skeletonHTML.repeat(8);
 
 fetch(`/subjects/${subject}/topics/data`)
   .then(res => res.json())
@@ -23,6 +27,8 @@ fetch(`/subjects/${subject}/topics/data`)
                               </div>`;
       return;
     }
+    
+    container.innerHTML = "";
 
     topics.forEach(topic => {
         const div = document.createElement("div");
