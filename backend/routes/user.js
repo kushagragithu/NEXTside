@@ -4,7 +4,7 @@ import { ensureAuth } from '../middleware/authMiddleware.js';
 import path from 'path';
 
 router.get('/profile', ensureAuth, (req, res) => {
-  res.sendFile(path.join(path.resolve(), 'public/profile.html'));
+  res.sendFile(path.join(path.resolve(), '../public/profile.html'));
 });
 
 router.get('/profile/data', ensureAuth, (req, res) => {
