@@ -38,6 +38,7 @@ fetch(`/subjects/${subject}/topics/data`)
               <div class="topic-content">
                   <h2>${topic.name}</h2>
                   <span>Total Questions : ${topic.totalQuestions}</span>
+                  <span>Weightage : 27%</span>
               </div>
               <button onclick="openTopic('anatomy')" class="view-button">View Questions</button>
             </a>
